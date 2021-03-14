@@ -13,6 +13,8 @@
 		253DEA9F25F17C8900070471 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 253DEA9E25F17C8900070471 /* Preview Assets.xcassets */; };
 		253DEAAA25F17C8900070471 /* Project_bTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253DEAA925F17C8900070471 /* Project_bTests.swift */; };
 		253DEAB525F17C8900070471 /* Project_bUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253DEAB425F17C8900070471 /* Project_bUITests.swift */; };
+		253DEAC625F17F9300070471 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253DEAC525F17F9200070471 /* GameModel.swift */; };
+		253DEACB25F1803E00070471 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253DEACA25F1803E00070471 /* GameViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		253DEAB025F17C8900070471 /* Project-bUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Project-bUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		253DEAB425F17C8900070471 /* Project_bUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_bUITests.swift; sourceTree = "<group>"; };
 		253DEAB625F17C8900070471 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		253DEAC525F17F9200070471 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		253DEACA25F1803E00070471 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,8 @@
 				253DEA9B25F17C8900070471 /* Assets.xcassets */,
 				253DEAA025F17C8900070471 /* Info.plist */,
 				253DEA9D25F17C8900070471 /* Preview Content */,
+				253DEAC525F17F9200070471 /* GameModel.swift */,
+				253DEACA25F1803E00070471 /* GameViewModel.swift */,
 			);
 			path = "Project-b";
 			sourceTree = "<group>";
@@ -259,8 +265,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				253DEACB25F1803E00070471 /* GameViewModel.swift in Sources */,
 				253DEA9A25F17C8600070471 /* ContentView.swift in Sources */,
 				253DEA9825F17C8600070471 /* Project_bApp.swift in Sources */,
+				253DEAC625F17F9300070471 /* GameModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +427,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Project-b/Preview Content\"";
+				DEVELOPMENT_TEAM = M25R2TLBJY;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Project-b/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -440,6 +449,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Project-b/Preview Content\"";
+				DEVELOPMENT_TEAM = M25R2TLBJY;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Project-b/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

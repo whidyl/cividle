@@ -11,7 +11,8 @@ import SwiftUI
 struct Project_bApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(viewModel: GameViewModel())
+                .preferredColorScheme(.light)
         }
     }
 }
