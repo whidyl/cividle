@@ -76,6 +76,13 @@ struct Terrain {
     // var description
     // var resources: use and array of sets for Resource object (with members type(enum), and quantity)
 }
+
+struct Card {
+    var name: String
+    var image: String
+    var targetedAction: (inout GameModel, Int, Int) -> Void
+}
+
 //class Structure {
 //    var name: String
 //    var description: String
