@@ -10,78 +10,25 @@
 import Foundation
 
 struct GameModel {
-    
-    
-    private(set) var cols = 6
-    private(set) var rows = 8
-    private(set) var  terrainMap: Array<Array<Terrain>>
-    private(set) var hand: Array<Card> = [Cards["discover grass"]!, Cards["discover grass"]!, Cards["discover water"]!, Cards["discover grass"]!, Cards["discover mountain"]!, Cards["discover water"]!]
+    var terrainMap = TerrainMap()
+    private(set) var resourceInventory: [ResourceType: ResourceInfo]
     
     init() {
-        
-        let n = TerrainTypes["nothing"]!
-        let w = TerrainTypes["water"]!
-        let g = TerrainTypes["grass"]!
-        let m = TerrainTypes["mountain"]!
-        var m2 = m
-        m2.overlay = nil
-        
-        terrainMap = [
-        [n, n, n, n, n, n],
-          [n, n, n, w, n, n],
-            [n, n, w, g, g, n],
-              [n, w, g, g, g, n],
-                [n, w, g, g, m, n],
-                  [n, n, m2, n, n, n],
-                    [n, n, n, n, n, n],
-                      [n, n, n, n, n, n]
+        resourceInventory = [
+            .hemp: ResourceInfo(quantity: 0, imageFile: "hemp-resource", rarity: .common),
+            .corn: ResourceInfo(quantity: 0, imageFile: "corn-resource", rarity: .rare),
+            .beef: ResourceInfo(quantity: 0, imageFile: "beef-resource", rarity: .luxury),
+            .water: ResourceInfo(quantity: 0, imageFile: "water-resource", rarity: .common),
+            .thorum: ResourceInfo(quantity: 0, imageFile: "thorum-resource", rarity: .common),
+            .goldDust: ResourceInfo(quantity: 0, imageFile: "gold-dust", rarity: .common),
         ]
     }
     
-    mutating func setTerrain(r: Int, c: Int, terrain: Terrain) {
-        terrainMap[r][c] = terrain
-    }
-    
-    mutating func removeCard(at: Int) {
-        if (at < hand.count) {
-            hand.remove(at: at)
-        }
+    mutating func addResource(rec: ResourceType) {
+        resourceInventory[rec]!.quantity += 1
     }
 }
 
-let TerrainTypes = [
-    "nothing": Terrain(name: "nothing"),
-    "grass": Terrain(name: "grass"),
-    "water": Terrain(name: "water"),
-    "mountain": Terrain(name: "mountain", overlay: "mountainoverlay")
-]
-
-let Cards = [
-    "discover grass": Card(name: "discover grass", image: "grass") { (model: inout GameModel, r: Int, c: Int) in
-        model.setTerrain(r: r, c: c, terrain: TerrainTypes["grass"]!)
-    },
-    
-    "discover mountain": Card(name: "discover mountain", image: "mountainoverlay") { (model: inout GameModel, r: Int, c: Int) in
-        model.setTerrain(r: r, c: c, terrain: TerrainTypes["mountain"]!)
-    },
-    
-    "discover water": Card(name: "discover water", image: "water") { (model: inout GameModel, r: Int, c: Int) in
-        model.setTerrain(r: r, c: c, terrain: TerrainTypes["water"]!)
-    },
-]
-
-struct Terrain {
-    var name: String
-    var overlay: String?
-    // var description
-    // var resources: use and array of sets for Resource object (with members type(enum), and quantity)
-}
-
-struct Card {
-    var name: String
-    var image: String
-    var targetedAction: (inout GameModel, Int, Int) -> Void
-}
 
 //class Structure {
 //    var name: String
