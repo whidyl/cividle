@@ -8,18 +8,17 @@
 import Foundation
 
 struct ResourceInfo: Hashable {
-    var quantity: Int
     var imageFile: String
     var rarity: Rarity
 }
 
-let ResourceImageFileNames: [ResourceType: String] = [
-    .hemp: "hemp-resource",
-    .corn: "corn-resource",
-    .beef: "beef-resource",
-    .water: "water-resource",
-    .thorum: "thorum-resource",
-    .goldDust: "gold-dust"
+let Resources: [ResourceType: ResourceInfo] = [
+    .hemp: ResourceInfo(imageFile: "hemp-resource", rarity: .rare),
+    .corn: ResourceInfo(imageFile: "corn-resource", rarity: .common),
+    .beef: ResourceInfo(imageFile: "beef-resource", rarity: .luxury),
+    .water: ResourceInfo(imageFile: "water-resource", rarity: .common),
+    .thorum: ResourceInfo(imageFile: "thorum-resource", rarity: .common),
+    .goldDust: ResourceInfo(imageFile: "gold-dust", rarity: .luxury),
 ]
 
 enum ResourceType: CaseIterable {

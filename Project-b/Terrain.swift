@@ -8,25 +8,33 @@
 import Foundation
 
 
-struct Terrain {
-    var name: String
+struct TerrainInfo {
+    var imageFile: String
     var overlay: String?
-    //var resourceYield: [ResourceType]
-    var resourceGenerator: () -> ResourceType?
+    var resourcePotential: [ResourceType]
+    
+    func generateResource() -> ResourceType? {
+        if !resourcePotential.isEmpty {
+            return resourcePotential.randomElement()!
+        } else {
+            return nil
+        }
+        
+    }
     // var description
 }
 
 struct TerrainMap {
     var cols = 6
     var rows = 8
-    var data: Array<Array<Terrain>>
+    private var data: Array<Array<TerrainType>>
     
     init() {
         
-        let n = TerrainTypes[.nothing]!
-        let w = TerrainTypes[.water]!
-        let g = TerrainTypes[.grass]!
-        let m = TerrainTypes[.mountain]!
+        let n = TerrainType.nothing
+        let w = TerrainType.water
+        let g = TerrainType.grass
+        let m = TerrainType.mountain
         
         data = [
         [n, n, n, n, n, n],
@@ -40,36 +48,20 @@ struct TerrainMap {
         ]
     }
     
-    mutating func setTerrain(r: Int, c: Int, terrain: Terrain) {
-        data[r][c] = terrain
+    mutating func set(r: Int, c: Int, type: TerrainType) {
+        data[r][c] = type
+    }
+    
+    func at(_ r: Int, _ c: Int) -> TerrainType {
+        return data[r][c]
     }
 }
 
-let TerrainTypes: [TerrainType: Terrain] = [ 
-    .nothing: Terrain(name: "nothing") {
-        return nil
-    },
-    .grass: Terrain(name: "grass") {
-        let rand = Float.random(in: 0..<1)
-        if (rand < 0.1) {
-            return ResourceType.beef
-        } else if (rand < 0.4) {
-            return ResourceType.hemp
-        } else {
-            return ResourceType.corn
-        }
-    },
-    .water: Terrain(name: "water") {
-        return ResourceType.water
-    },
-    .mountain: Terrain(name: "mountain", overlay: "mountainoverlay") {
-        let rand = Float.random(in: 0..<1)
-        if (rand < 0.1) {
-            return ResourceType.goldDust
-        } else {
-            return ResourceType.thorum
-        }
-    }
+let Terrains: [TerrainType: TerrainInfo] = [
+    .nothing: TerrainInfo(imageFile: "nothing", resourcePotential: []),
+    .grass: TerrainInfo(imageFile: "grass", resourcePotential: [.beef, .beef, .hemp, .corn, .corn, .corn, .corn, .corn, .corn, .corn]),
+    .water: TerrainInfo(imageFile: "water", resourcePotential: [.water]),
+    .mountain: TerrainInfo(imageFile: "mountain", overlay:"mountainoverlay", resourcePotential: [.goldDust, .thorum, .thorum])
 ]
 
 enum TerrainType {

@@ -12,20 +12,26 @@ class GameViewModel: ObservableObject {
     
     // MARK: Intent(s)
     
-    func setGrass(r: Int, c: Int) {
-        model.terrainMap.setTerrain(r: r, c: c, terrain: TerrainTypes[.grass]!)
+    func progressStages() {
+        model.progressStages()
     }
     
     func gainRandomResource() {
-        model.addResource(rec: ResourceType.allCases.randomElement()!)
+        model.addResource(rec: ResourceType.allCases.randomElement()!, quantity: 1)
     }
     
-    func yieldTerrain(terrain: Terrain) -> ResourceType? {
-        if let rec = terrain.resourceGenerator() {
-            model.addResource(rec: rec)
+    func yieldTerrain(terrainType: TerrainType) -> ResourceType? {
+        if let rec = Terrains[terrainType]!.generateResource() {
+            model.addResource(rec: rec, quantity: 1)
             return rec
         }
         return nil
+    }
+    
+    func tick() {
+        for structure in structures.values {
+            structure.onTick(model: &model)
+        }
     }
     
     // MARK: Access to model
@@ -41,8 +47,11 @@ class GameViewModel: ObservableObject {
         return model.terrainMap.rows
     }
     
-    var resourseInventory: [ResourceType: ResourceInfo] {
+    var resourceInventory: [ResourceType: Int] {
         return model.resourceInventory
+    }
+    var structures: [MapPos: BasicStructure] {
+        return model.structures
     }
     
 }
