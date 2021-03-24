@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Deque
 
 struct HexTileView: View {                       
     @EnvironmentObject var viewModel: GameViewModel
@@ -13,8 +14,9 @@ struct HexTileView: View {
     let r: Int
     let c: Int
     @Binding var animationStep: Int
+    @Binding var panning: Bool
     
-    @State var tapIndicators: [TapIndicator] = []
+    @State var tapIndicators = Deque<TapIndicator>()
     
     //TODO: use queue to fix tap indicator
     
@@ -42,8 +44,8 @@ struct HexTileView: View {
                         .resizable()
                 }
                 
-                ForEach(tapIndicators) { indicator in
-                    TapIndicatorView(imageName: indicator.imageFile, quantity: 1)
+                ForEach(tapIndicators, id: \.self) { indicator in 
+                    TapIndicatorView(imageName: indicator.imageFile, quantity: 1, panning: $panning)
                 }
                 
             }
@@ -52,7 +54,7 @@ struct HexTileView: View {
             //viewModel.setGrass(r: r, c: c)
             if let rec = viewModel.yieldTerrain(terrainType: viewModel.map.at(r, c)) {
                 tapIndicators.append(TapIndicator(imageFile: Resources[rec]!.imageFile, quanitity: 1))
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                     tapIndicators.removeFirst()
                 }
             }
@@ -64,6 +66,6 @@ struct HexTileView: View {
 
 struct HexTileView_Previews: PreviewProvider {
     static var previews: some View {
-        HexTileView(r: 0, c: 0, animationStep: .constant(0))
+        HexTileView(r: 0, c: 0, animationStep: .constant(0), panning: .constant(false))
     }
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TapIndicator: Identifiable {
+struct TapIndicator: Identifiable, Hashable {
     let imageFile: String
     let quanitity: Int
     let id = UUID()
@@ -16,7 +16,9 @@ struct TapIndicator: Identifiable {
 struct TapIndicatorView: View {
     let imageName: String
     let quantity: Int
-    let xOffset = CGFloat.random(in: -10..<10)
+    @Binding var panning: Bool
+    
+    @State var xOffset = CGFloat.random(in: -10..<10)
     @State var targetY = CGFloat(0)
     @State var opacity: Double = 2
     
@@ -30,11 +32,11 @@ struct TapIndicatorView: View {
                 .foregroundColor(.white)
         }
         .offset(x: -15 + xOffset, y: targetY)
-        .animation(.linear(duration: 2))
+        .animation(panning ? .none : .easeOut(duration: 0.7))
         .opacity(opacity)
-        .animation(.easeOut(duration: 1.2))
+        .animation(.easeOut(duration: 0.7))
         .onAppear {
-            targetY = -100
+            targetY = -50
             opacity = 0
         }
         
@@ -43,6 +45,6 @@ struct TapIndicatorView: View {
 
 struct TapIndicatorView_Previews: PreviewProvider {
     static var previews: some View {
-        TapIndicatorView(imageName: "food-resource", quantity: 15)
+        TapIndicatorView(imageName: "food-resource", quantity: 15, panning: .constant(true))
     }
 }

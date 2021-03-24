@@ -7,7 +7,9 @@
 
 import Foundation
 
-public struct Queue<T> {
+public struct Queue<T>: IteratorProtocol, Sequence {
+    
+    
     fileprivate var list = LinkedList<T>()
     
     public mutating func enqueue(_ element: T) {
@@ -27,6 +29,9 @@ public struct Queue<T> {
         return list.isEmpty
     }
     
+    public mutating func next() -> T? {
+        return list.next()?.value
+    }
 }
 
 extension Queue: CustomStringConvertible {

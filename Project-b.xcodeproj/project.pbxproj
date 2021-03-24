@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,8 @@
 		25593B8D25FEB3320098040E /* Terrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25593B8C25FEB3320098040E /* Terrain.swift */; };
 		25723BEC26051DD500869E49 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25723BEB26051DD500869E49 /* Structures.swift */; };
 		25B46010260BAA7600F29B3E /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B4600F260BAA7600F29B3E /* LinkedList.swift */; };
+		25DCC785260BC61E006E23EA /* Deque in Frameworks */ = {isa = PBXBuildFile; productRef = 25DCC784260BC61E006E23EA /* Deque */; };
+		25DCC786260BC61E006E23EA /* Deque in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 25DCC784260BC61E006E23EA /* Deque */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,20 @@
 			remoteInfo = "Project-b";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		25DCC787260BC61E006E23EA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				25DCC786260BC61E006E23EA /* Deque in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		251B4A74260AB3930097A6E2 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
@@ -74,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25DCC785260BC61E006E23EA /* Deque in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,12 +198,16 @@
 				253DEA9025F17C8600070471 /* Sources */,
 				253DEA9125F17C8600070471 /* Frameworks */,
 				253DEA9225F17C8600070471 /* Resources */,
+				25DCC787260BC61E006E23EA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Project-b";
+			packageProductDependencies = (
+				25DCC784260BC61E006E23EA /* Deque */,
+			);
 			productName = "Project-b";
 			productReference = 253DEA9425F17C8600070471 /* Project-b.app */;
 			productType = "com.apple.product-type.application";
@@ -258,6 +279,9 @@
 				Base,
 			);
 			mainGroup = 253DEA8B25F17C8600070471;
+			packageReferences = (
+				25DCC783260BC61E006E23EA /* XCRemoteSwiftPackageReference "Deque" */,
+			);
 			productRefGroup = 253DEA9525F17C8600070471 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -628,6 +652,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		25DCC783260BC61E006E23EA /* XCRemoteSwiftPackageReference "Deque" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/attaswift/Deque";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		25DCC784260BC61E006E23EA /* Deque */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 25DCC783260BC61E006E23EA /* XCRemoteSwiftPackageReference "Deque" */;
+			productName = Deque;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 253DEA8C25F17C8600070471 /* Project object */;
 }

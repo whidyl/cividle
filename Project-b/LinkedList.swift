@@ -17,9 +17,10 @@ public class Node<T> {
     }
 }
 
-public class LinkedList<T> {
+public class LinkedList<T>: IteratorProtocol, Sequence {
     fileprivate var head: Node<T>?
     private var tail: Node<T>?
+    private var current: Node<T>?
     
     public var isEmpty: Bool {
         return head == nil
@@ -35,6 +36,10 @@ public class LinkedList<T> {
     
     public func append(_ value: T) {
         let newNode = Node(value: value)
+        
+        if isEmpty {
+            current = newNode
+        }
         
         if let tailNode = tail {
             newNode.previous = tailNode
@@ -85,6 +90,10 @@ public class LinkedList<T> {
       node.next = nil
 
       return node.value
+    }
+    
+    public func next() -> Node<T>? {
+        return current?.next
     }
 }
 
