@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct TapIndicator: Identifiable, Hashable {
+    let x: CGFloat
+    let y: CGFloat
     let imageFile: String
-    let quanitity: Int
+    let quantity: Int
     let id = UUID()
 }
 
@@ -25,8 +27,7 @@ struct TapIndicatorView: View {
     var body: some View {
         ZStack {
             Image(imageName)
-                .resizable()
-                .scaleEffect(0.5)
+
             Text("+\(quantity)")
                 .offset(x: 20)
                 .foregroundColor(.white)

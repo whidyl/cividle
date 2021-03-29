@@ -12,7 +12,8 @@ struct Project_bApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(viewModel: GameViewModel())
-                .preferredColorScheme(.light)
+                .preferredColorScheme(.light )
+                .statusBar(hidden: true)
         }
     }
 }

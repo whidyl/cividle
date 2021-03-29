@@ -10,42 +10,23 @@
 import Foundation
 
 struct GameModel {
-    var terrainMap = TerrainMap()
-    private(set) var resourceInventory: [ResourceType: Int]
-    var structures: [MapPos: BasicStructure] = [MapPos(r: 3, c: 3): FarmStructure()]
+    //TODO: persistant data, load terrain map from json
+    private(set) var terrainMap = TerrainMap()
+    private(set) var resourceInventory: [ResourceType: Int] = ResourceType.allCases.reduce(into: [ResourceType: Int]()) { $0[$1] = 0 } //dictionary of all resource types with 0 quantity
+    var structures: [MapPos: AnimatedStructure] = [MapPos(r: 3, c: 3): FarmStructure(pos: MapPos(r: 3, c: 3))]
+    //TODO: Aesthetics/Happiness quantity: effects productivity?
     private var money: Int = 10000
     
-    init() {
-        resourceInventory = [
-            .hemp: 0,
-            .corn: 0,
-            .beef: 0,
-            .water: 0,
-            .thorum: 0,
-            .goldDust: 0,
-        ]
-        
+    mutating func addResource(_ resourceType: ResourceType, _ quantity: Int) {
+        resourceInventory[resourceType]! += quantity
     }
     
-    mutating func addResource(rec: ResourceType, quantity: Int) {
-        resourceInventory[rec]! += quantity
-    }
-    
-    mutating func addMoney(quantity: Int) {
+    mutating func addMoney(_ quantity: Int) {
         money += quantity
     }
     
-    mutating func subMoney(quantity: Int) {
+    mutating func subtractMoney(_ quantity: Int) {
         money -= quantity
-    }
-    
-    mutating func progressStages() {
-        for mapPos in structures.keys {
-            if var structure = (structures[mapPos]! as? AnimatedStructure) {
-                structure.progressStage()
-                self.structures[mapPos] = structure
-            }
-        }
     }
     
     func tick() {
@@ -62,3 +43,8 @@ struct MapPos: Hashable {
     }
 }
 
+protocol Watchable {
+    var name: String { get }
+    var description: String { get }
+    var iconFile: String { get }
+}

@@ -12,25 +12,17 @@ class GameViewModel: ObservableObject {
     
     // MARK: Intent(s)
     
-    func progressStages() {
-        model.progressStages()
-    }
-    
-    func gainRandomResource() {
-        model.addResource(rec: ResourceType.allCases.randomElement()!, quantity: 1)
-    }
-    
     func yieldTerrain(terrainType: TerrainType) -> ResourceType? {
         if let rec = Terrains[terrainType]!.generateResource() {
-            model.addResource(rec: rec, quantity: 1)
+            model.addResource(rec, 1)
             return rec
         }
         return nil
     }
     
     func tick() {
-        for structure in structures.values {
-            structure.onTick(model: &model)
+        for pos in structures.keys {
+            structures[pos]?.onTick(model: &model) 
         }
     }
     

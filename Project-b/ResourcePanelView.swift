@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ResourcePanelView: View {
+    //TODO: sell resources for money (export?)
+    
     @EnvironmentObject var viewModel: GameViewModel
     
     let coloumns = Array(repeating: GridItem(.fixed(50), spacing: 20), count: 6)

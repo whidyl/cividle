@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		251B4A75260AB3930097A6E2 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251B4A74260AB3930097A6E2 /* Queue.swift */; };
 		2525DA2D2603BFC000F35C0F /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2525DA2C2603BFC000F35C0F /* Resources.swift */; };
 		253DEA9825F17C8600070471 /* Project_bApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253DEA9725F17C8600070471 /* Project_bApp.swift */; };
 		253DEA9A25F17C8600070471 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253DEA9925F17C8600070471 /* ContentView.swift */; };
@@ -23,9 +22,10 @@
 		254B32F926040F5000EBE961 /* TapIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B32F826040F5000EBE961 /* TapIndicatorView.swift */; };
 		25593B8D25FEB3320098040E /* Terrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25593B8C25FEB3320098040E /* Terrain.swift */; };
 		25723BEC26051DD500869E49 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25723BEB26051DD500869E49 /* Structures.swift */; };
-		25B46010260BAA7600F29B3E /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B4600F260BAA7600F29B3E /* LinkedList.swift */; };
 		25DCC785260BC61E006E23EA /* Deque in Frameworks */ = {isa = PBXBuildFile; productRef = 25DCC784260BC61E006E23EA /* Deque */; };
 		25DCC786260BC61E006E23EA /* Deque in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 25DCC784260BC61E006E23EA /* Deque */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		25DCC78B260BDEB1006E23EA /* TapIndicatorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DCC78A260BDEB1006E23EA /* TapIndicatorsView.swift */; };
+		25DCC793260BE6E9006E23EA /* InfoPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DCC792260BE6E9006E23EA /* InfoPanelView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +60,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		251B4A74260AB3930097A6E2 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		2525DA2C2603BFC000F35C0F /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		253DEA9425F17C8600070471 /* Project-b.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-b.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		253DEA9725F17C8600070471 /* Project_bApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_bApp.swift; sourceTree = "<group>"; };
@@ -82,7 +81,8 @@
 		254B32F826040F5000EBE961 /* TapIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapIndicatorView.swift; sourceTree = "<group>"; };
 		25593B8C25FEB3320098040E /* Terrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terrain.swift; sourceTree = "<group>"; };
 		25723BEB26051DD500869E49 /* Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
-		25B4600F260BAA7600F29B3E /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
+		25DCC78A260BDEB1006E23EA /* TapIndicatorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapIndicatorsView.swift; sourceTree = "<group>"; };
+		25DCC792260BE6E9006E23EA /* InfoPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPanelView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,21 +134,13 @@
 		253DEA9625F17C8600070471 /* Project-b */ = {
 			isa = PBXGroup;
 			children = (
-				25B4600E260BA9B800F29B3E /* Datastructures */,
 				253DEA9725F17C8600070471 /* Project_bApp.swift */,
 				253DEA9B25F17C8900070471 /* Assets.xcassets */,
 				253DEAA025F17C8900070471 /* Info.plist */,
 				253DEA9D25F17C8900070471 /* Preview Content */,
-				253DEAC525F17F9200070471 /* GameModel.swift */,
-				25723BEB26051DD500869E49 /* Structures.swift */,
-				2525DA2C2603BFC000F35C0F /* Resources.swift */,
-				25593B8C25FEB3320098040E /* Terrain.swift */,
+				25DCC78F260BDF2B006E23EA /* M */,
 				253DEACA25F1803E00070471 /* GameViewModel.swift */,
-				253DEA9925F17C8600070471 /* ContentView.swift */,
-				254B32E326040E1200EBE961 /* GameMapView.swift */,
-				254B32EB26040E9600EBE961 /* HexTileView.swift */,
-				254B32F826040F5000EBE961 /* TapIndicatorView.swift */,
-				254B32F026040F1F00EBE961 /* ResourcePanelView.swift */,
+				25DCC78E260BDF14006E23EA /* V */,
 			);
 			path = "Project-b";
 			sourceTree = "<group>";
@@ -179,13 +171,29 @@
 			path = "Project-bUITests";
 			sourceTree = "<group>";
 		};
-		25B4600E260BA9B800F29B3E /* Datastructures */ = {
+		25DCC78E260BDF14006E23EA /* V */ = {
 			isa = PBXGroup;
 			children = (
-				251B4A74260AB3930097A6E2 /* Queue.swift */,
-				25B4600F260BAA7600F29B3E /* LinkedList.swift */,
+				253DEA9925F17C8600070471 /* ContentView.swift */,
+				254B32E326040E1200EBE961 /* GameMapView.swift */,
+				254B32EB26040E9600EBE961 /* HexTileView.swift */,
+				25DCC78A260BDEB1006E23EA /* TapIndicatorsView.swift */,
+				254B32F826040F5000EBE961 /* TapIndicatorView.swift */,
+				254B32F026040F1F00EBE961 /* ResourcePanelView.swift */,
+				25DCC792260BE6E9006E23EA /* InfoPanelView.swift */,
 			);
-			name = Datastructures;
+			name = V;
+			sourceTree = "<group>";
+		};
+		25DCC78F260BDF2B006E23EA /* M */ = {
+			isa = PBXGroup;
+			children = (
+				253DEAC525F17F9200070471 /* GameModel.swift */,
+				25723BEB26051DD500869E49 /* Structures.swift */,
+				2525DA2C2603BFC000F35C0F /* Resources.swift */,
+				25593B8C25FEB3320098040E /* Terrain.swift */,
+			);
+			name = M;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,15 +336,15 @@
 				253DEA9A25F17C8600070471 /* ContentView.swift in Sources */,
 				254B32EC26040E9600EBE961 /* HexTileView.swift in Sources */,
 				25593B8D25FEB3320098040E /* Terrain.swift in Sources */,
+				25DCC78B260BDEB1006E23EA /* TapIndicatorsView.swift in Sources */,
 				254B32F926040F5000EBE961 /* TapIndicatorView.swift in Sources */,
 				2525DA2D2603BFC000F35C0F /* Resources.swift in Sources */,
 				254B32F126040F1F00EBE961 /* ResourcePanelView.swift in Sources */,
-				251B4A75260AB3930097A6E2 /* Queue.swift in Sources */,
 				25723BEC26051DD500869E49 /* Structures.swift in Sources */,
 				254B32E426040E1200EBE961 /* GameMapView.swift in Sources */,
 				253DEA9825F17C8600070471 /* Project_bApp.swift in Sources */,
-				25B46010260BAA7600F29B3E /* LinkedList.swift in Sources */,
 				253DEAC625F17F9300070471 /* GameModel.swift in Sources */,
+				25DCC793260BE6E9006E23EA /* InfoPanelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

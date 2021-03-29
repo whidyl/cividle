@@ -6,33 +6,12 @@
 //
 
 import Foundation
-
-//var Structures: [StructureType: Structure] = [
-//    .farm: Structure(
-//        name: "Farm",
-//        maxStage: 3,
-//        imageFiles: [
-//            0: "farm-stage1",
-//            1: "farm-stage2",
-//            2: "farm-stage3",
-//            3: "farm-stage4",
-//        ],
-//        onPlace: { model in
-//            model.addResource(rec: .goldDust, quantity: 100)
-//        },
-//        onTick: { model in
-//            model.addResource(rec: .corn, quantity: 5)
-//        },
-//        onRemove: {model in
-//            model.addResource(rec: .water, quantity: 5)
-//        }
-//    )
-//]
-
+//TODO: structures hold one resource and a quantity until tapped or consumed by adjacent structure
 struct FarmStructure: AnimatedStructure {
     
     var stage: Int = 0
     var maxStage: Int = 3
+    var pos: MapPos
     
     var imageFiles = [
                 0: "farm-stage1",
@@ -43,25 +22,28 @@ struct FarmStructure: AnimatedStructure {
     
     let id = UUID()
     var name: String = "Farm"
+    var description: String = "Collects food, must be placed on water"
+    var iconFile: String = "farm-stage4"
     
     func onPlace(model: inout GameModel) {
-        model.subMoney(quantity: 1000)
+        model.subtractMoney(1000)
     }
     
     func onTick(model: inout GameModel) {
-        if stage == 0 {
-            model.addResource(rec: .corn, quantity: 1)
+        model.structures[pos]!.progressStage()
+        if stage == 3 {
+            model.addResource(.corn, 1)
         }
     }
     
     func onRemove(model: inout GameModel) {
-        model.addMoney(quantity: 1000)
+        model.addMoney(1000)
     }
     
     
 }
 
-protocol BasicStructure {
+protocol BasicStructure: Watchable {
     var id: UUID { get }
     var name: String { get }
     var imageFile: String { get }
