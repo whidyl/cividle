@@ -18,7 +18,7 @@ struct ResourcePanelView: View {
         ZStack {
             ScrollView () {
                 LazyVGrid(columns: coloumns) {
-                    ForEach(viewModel.resourceInventory.filter { $1 > 0 }.sorted(by: {$0.value > $1.value}), id: \.key) { resourceType, quantity in
+                    ForEach(viewModel.resourceInventory.filter{ $1 > 0 }.sorted(by: {$0.value > $1.value}), id: \.key) { resourceType, quantity in
                         ZStack {
                             Image(Resources[resourceType]!.imageFile)
                                 .resizable()

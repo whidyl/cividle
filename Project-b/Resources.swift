@@ -5,20 +5,23 @@
 //  Created by Dylan Whitehurst on 3/18/21.
 //
 
+
+
 import Foundation
 
 struct ResourceInfo: Hashable {
-    var imageFile: String
-    var rarity: Rarity
+    let imageFile: String
+    //TODO: value can increase somehow like with tourism?
+    var value: Int
 }
 
 let Resources: [ResourceType: ResourceInfo] = [
-    .hemp: ResourceInfo(imageFile: "hemp-resource", rarity: .rare),
-    .corn: ResourceInfo(imageFile: "corn-resource", rarity: .common),
-    .beef: ResourceInfo(imageFile: "beef-resource", rarity: .luxury),
-    .water: ResourceInfo(imageFile: "water-resource", rarity: .common),
-    .thorum: ResourceInfo(imageFile: "thorum-resource", rarity: .common),
-    .goldDust: ResourceInfo(imageFile: "gold-dust", rarity: .luxury),
+    .hemp: ResourceInfo(imageFile: "hemp-resource", value: 1),
+    .corn: ResourceInfo(imageFile: "corn-resource", value: 20),
+    .beef: ResourceInfo(imageFile: "beef-resource", value: 1),
+    .water: ResourceInfo(imageFile: "water-resource", value: 1),
+    .thorum: ResourceInfo(imageFile: "thorum-resource", value: 1),
+    .goldDust: ResourceInfo(imageFile: "gold-dust", value: 100),
 ]
 
 enum ResourceType: CaseIterable {
@@ -30,8 +33,6 @@ enum ResourceType: CaseIterable {
     case thorum
 }
 
-enum Rarity {
-    case common
-    case rare
-    case luxury
+func resourceImageFileOf(_ resource: ResourceType) -> String {
+    return Resources[resource]!.imageFile
 }

@@ -11,66 +11,57 @@ import Deque
 struct HexTileView: View {                       
     @EnvironmentObject var viewModel: GameViewModel
     
-    let r: Int
-    let c: Int
+    let mapPos: MapPos
     
-    //@Binding var animationStep: Int
     @Binding var panning: Bool
     @Binding var tapIndicators: Deque<TapIndicator>
     @Binding var watching: MapPos?
     
     var body: some View {
-        //let isWatching = watching == viewModel.structures[MapPos(r: r, c: c)]
         GeometryReader { geometry in
+            let midX =  geometry.frame(in: .global).midX
+            let midY = geometry.frame(in: .global).midY
+            
+
             ZStack {
-                let terrainType = viewModel.map.at(r, c)
-                let terrainInfo = Terrains[terrainType]!
-                let structure = viewModel.structures[MapPos(r: r, c: c)]
-                if terrainType != TerrainType.nothing {
-                    if terrainInfo.overlay != nil {
+                let terrainInfo = viewModel.terrainMap.terrainInfoAt(mapPos)
+                
+                if viewModel.terrainMap.typeAt(mapPos) != .nothing {
+                    if let overlay = terrainInfo.overlay {
                         Image(terrainInfo.imageFile)
-                            .resizable()
-                            .overlay(
-                                Image(terrainInfo.overlay!)
-                                    .offset(y: -9)
-                                    .allowsHitTesting(false)
-                            )
+                            .overlay(Image(overlay).offset(y: -8).allowsHitTesting(false))
                     } else {
                         Image(terrainInfo.imageFile)
-                            .resizable()
                     }
 
-                    if let structure = structure as? AnimatedStructure {
+                    if let structure = viewModel.structureAt(mapPos) {
                         Image(structure.imageFile)
-                            .resizable()
                     }
 
                 }
             }
-            .brightness(watching == MapPos(r: r, c: c) ? 0.2: 0)
-            .simultaneousGesture( TapGesture().onEnded {
-                    //viewModel.setGrass(r: r, c: c)
-                    print("\(geometry.frame(in: .global).midX), \(geometry.frame(in: .global).midY)")
-                    if let rec = viewModel.yieldTerrain(terrainType: viewModel.map.at(r, c)) {
-                        tapIndicators.append(TapIndicator(x: geometry.frame(in: .global).midX, y: geometry.frame(in: .global).midY, imageFile: Resources[rec]!.imageFile, quantity: 1))
+            .brightness(watching == mapPos ? 0.2: 0) // highlight selected tile
+            .simultaneousGesture(
+                TapGesture().onEnded {
+                    if let structure = viewModel.structureAt(mapPos) {
+                        let resourceImage = resourceImageFileOf(structure.storage.resourceType)
+                        let quantity = structure.storage.quantity
+                        let collected = viewModel.collectStructure(at: mapPos)
+                        if collected > 0 {
+                            tapIndicators.append(TapIndicator(x: midX, y: midY, imageFile: resourceImage, quantity: quantity))
+                        }
+                    } else if let resource = viewModel.yieldTerrain(terrainType: viewModel.terrainMap.typeAt(mapPos)) {
+                        tapIndicators.append(TapIndicator(x: midX, y: midY, imageFile: resourceImageFileOf(resource), quantity: 1))
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                             tapIndicators.removeFirst()
                         }
                     }
-                    //print(tapIndicators)
                 }
             )
-            .simultaneousGesture( LongPressGesture(minimumDuration: 0.5).onEnded() { _ in
-                    watching = MapPos(r: r, c: c)
-                }
+            .simultaneousGesture(
+                LongPressGesture(minimumDuration: 0.5).onEnded() { _ in watching = mapPos }
             )
         }
             
     }
 }
-
-//struct HexTileView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HexTileView(r: 0, c: 0, animationStep: .constant(0), panning: .constant(false))
-//    }
-//}

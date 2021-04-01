@@ -7,8 +7,13 @@
 
 import Foundation
 
+//TODO: Terrain discovery. discovered bool? upgrade to discover more land?
+//TODO: Special features such as oil?
+//TODO: serialization
+//TODO: load from json terrain map (convert from square to trapazoid)
 
 struct TerrainInfo {
+    var name: String
     var imageFile: String
     var overlay: String?
     var resourcePotential: [ResourceType]
@@ -21,12 +26,12 @@ struct TerrainInfo {
         }
         
     }
-    // var description
+    //TODO: var description
 }
 
 struct TerrainMap {
-    var cols = 6
-    var rows = 8
+    private(set) var cols = 6
+    private(set) var rows = 8
     private var data: Array<Array<TerrainType>>
     
     init() {
@@ -48,20 +53,24 @@ struct TerrainMap {
         ]
     }
     
-    mutating func set(r: Int, c: Int, type: TerrainType) {
-        data[r][c] = type
+    mutating func set(_ pos: MapPos, _ terrain: TerrainType) {
+        data[pos.r][pos.c] = terrain
     }
     
-    func at(_ r: Int, _ c: Int) -> TerrainType {
-        return data[r][c]
+    func typeAt(_ pos: MapPos) -> TerrainType {
+        return data[pos.r][pos.c]
+    }
+    
+    func terrainInfoAt(_ pos: MapPos) -> TerrainInfo {
+        return Terrains[typeAt(pos)]!
     }
 }
 
-let Terrains: [TerrainType: TerrainInfo] = [
-    .nothing: TerrainInfo(imageFile: "nothing", resourcePotential: []),
-    .grass: TerrainInfo(imageFile: "grass", resourcePotential: [.beef, .beef, .hemp, .corn, .corn, .corn, .corn, .corn, .corn, .corn]),
-    .water: TerrainInfo(imageFile: "water", resourcePotential: [.water]),
-    .mountain: TerrainInfo(imageFile: "mountain", overlay:"mountainoverlay", resourcePotential: [.goldDust, .thorum, .thorum])
+var Terrains: [TerrainType: TerrainInfo] = [
+    .nothing: TerrainInfo(name: "nothing", imageFile: "nothing", resourcePotential: []),
+    .grass: TerrainInfo(name: "Grass", imageFile: "grass", resourcePotential: [.beef, .beef, .hemp, .corn, .corn, .corn, .corn, .corn, .corn, .corn]),
+    .water: TerrainInfo(name: "Water", imageFile: "water", resourcePotential: [.water]),
+    .mountain: TerrainInfo(name: "Mountain", imageFile: "mountain", overlay:"mountainoverlay", resourcePotential: [.goldDust, .thorum, .thorum])
 ]
 
 enum TerrainType {

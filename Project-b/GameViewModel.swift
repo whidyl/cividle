@@ -12,6 +12,7 @@ class GameViewModel: ObservableObject {
     
     // MARK: Intent(s)
     
+    //TODO: change to return tuple after modifying generateResource() to generate quantities somehow
     func yieldTerrain(terrainType: TerrainType) -> ResourceType? {
         if let rec = Terrains[terrainType]!.generateResource() {
             model.addResource(rec, 1)
@@ -26,23 +27,29 @@ class GameViewModel: ObservableObject {
         }
     }
     
+    func collectStructure(at: MapPos) -> Int {
+        if let amount = model.structures[at]?.collectAll(), let type = model.structures[at]?.storage.resourceType {
+            model.addResource(type, amount)
+            return amount
+        }
+        return 0
+    }
+    
     // MARK: Access to model
-    var map: TerrainMap {
+    
+    func structureAt(_ at: MapPos) -> AnimatedStructure? {
+        return structures[at]
+    }
+    
+    var terrainMap: TerrainMap {
         return model.terrainMap
-    }
-    
-    var cols: Int {
-        return model.terrainMap.cols
-    }
-    
-    var rows: Int {
-        return model.terrainMap.rows
     }
     
     var resourceInventory: [ResourceType: Int] {
         return model.resourceInventory
     }
-    var structures: [MapPos: BasicStructure] {
+    
+    var structures: [MapPos: AnimatedStructure] { 
         return model.structures
     }
     

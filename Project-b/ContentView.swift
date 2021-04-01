@@ -11,17 +11,13 @@ import Deque
 
 struct ContentView: View {
     @StateObject var viewModel = GameViewModel()
-    //@State var animationStep = 0
-    @State var tapIndicators = Deque<TapIndicator>()
-    @State var panning = false
     @State var watching: MapPos?
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
         ZStack {
-            GameMapView(panning: $panning, tapIndicators: $tapIndicators, watching: $watching)
-            TapIndicatorsView(tapIndicators: $tapIndicators, panning: $panning)
+            GameContent(watching: $watching)
             ResourcePanelView()
             InfoPanelView(watching: $watching) 
         }

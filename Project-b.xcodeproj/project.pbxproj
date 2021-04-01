@@ -22,6 +22,7 @@
 		254B32F926040F5000EBE961 /* TapIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B32F826040F5000EBE961 /* TapIndicatorView.swift */; };
 		25593B8D25FEB3320098040E /* Terrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25593B8C25FEB3320098040E /* Terrain.swift */; };
 		25723BEC26051DD500869E49 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25723BEB26051DD500869E49 /* Structures.swift */; };
+		2580E88926150D0100761CC3 /* GameContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2580E88826150D0100761CC3 /* GameContent.swift */; };
 		25DCC785260BC61E006E23EA /* Deque in Frameworks */ = {isa = PBXBuildFile; productRef = 25DCC784260BC61E006E23EA /* Deque */; };
 		25DCC786260BC61E006E23EA /* Deque in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 25DCC784260BC61E006E23EA /* Deque */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		25DCC78B260BDEB1006E23EA /* TapIndicatorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DCC78A260BDEB1006E23EA /* TapIndicatorsView.swift */; };
@@ -81,6 +82,7 @@
 		254B32F826040F5000EBE961 /* TapIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapIndicatorView.swift; sourceTree = "<group>"; };
 		25593B8C25FEB3320098040E /* Terrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terrain.swift; sourceTree = "<group>"; };
 		25723BEB26051DD500869E49 /* Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
+		2580E88826150D0100761CC3 /* GameContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameContent.swift; sourceTree = "<group>"; };
 		25DCC78A260BDEB1006E23EA /* TapIndicatorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapIndicatorsView.swift; sourceTree = "<group>"; };
 		25DCC792260BE6E9006E23EA /* InfoPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPanelView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				253DEA9925F17C8600070471 /* ContentView.swift */,
+				2580E88826150D0100761CC3 /* GameContent.swift */,
 				254B32E326040E1200EBE961 /* GameMapView.swift */,
 				254B32EB26040E9600EBE961 /* HexTileView.swift */,
 				25DCC78A260BDEB1006E23EA /* TapIndicatorsView.swift */,
@@ -333,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				253DEACB25F1803E00070471 /* GameViewModel.swift in Sources */,
+				2580E88926150D0100761CC3 /* GameContent.swift in Sources */,
 				253DEA9A25F17C8600070471 /* ContentView.swift in Sources */,
 				254B32EC26040E9600EBE961 /* HexTileView.swift in Sources */,
 				25593B8D25FEB3320098040E /* Terrain.swift in Sources */,

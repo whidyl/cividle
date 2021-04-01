@@ -4,7 +4,7 @@
 //
 //  Created by Dylan Whitehurst on 3/24/21.
 //
-
+//! input/output display: inIcon1*x + inIcon2*y = outIcon*z
 import SwiftUI
 
 struct InfoPanelView: View {
@@ -15,22 +15,40 @@ struct InfoPanelView: View {
         ZStack {
             ScrollView () {
                 if watching != nil {
-                    let info = viewModel.structures[watching!]
-                    HStack {
-                        VStack {
-                            Text("\(info!.name)")
-                                .bold()
-                            Image("\(info!.iconFile)")
+                    if let info = viewModel.structures[watching!] {
+                        HStack {
+                            VStack {
+                                Text("\(info.name)")
+                                    .bold()
+                                Image(info.iconFile)
+                            }
+                            .padding(50)
+                            Spacer()
+                            
+                            Text("\(info.description)")
+                                .padding(Edge.Set.top, 40)
+                                .padding(Edge.Set.horizontal, 20)
+                            Text("Storage: \(info.storage.quantity)")
+                            
                         }
-                        .padding(50)
-                        Spacer()
-                        
-                        Text("\(info!.description)")
-                            .padding(Edge.Set.top, 40)
-                            .padding(Edge.Set.horizontal, 20)
-                        
+                        .foregroundColor(.white)
+                    } else if let type = viewModel.terrainMap.typeAt(MapPos(watching!.r, watching!.c)) {
+                        HStack {
+                            VStack {
+                                Text("\(Terrains[type]!.imageFile)")
+                                    .bold()
+                                Image(Terrains[type]!.imageFile)
+                            }
+                            .padding(50)
+                            Spacer()
+                            
+                            Text("TODO: Descriptions for terrain")
+                                .padding(Edge.Set.top, 40)
+                                .padding(Edge.Set.horizontal, 20)
+                            
+                        }
+                        .foregroundColor(.white)
                     }
-                    .foregroundColor(.white)
                 }
             }
             .frame(height: 200)
