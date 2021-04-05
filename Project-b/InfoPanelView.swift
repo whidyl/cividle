@@ -28,7 +28,7 @@ struct InfoPanelView: View {
                             Text("\(info.description)")
                                 .padding(Edge.Set.top, 40)
                                 .padding(Edge.Set.horizontal, 20)
-                            Text("Storage: \(info.storage.quantity)")
+                            Text("Storage: \(info.storageSlots[0].quantity)") //TODO: display set of storages with resource icons
                             
                         }
                         .foregroundColor(.white)

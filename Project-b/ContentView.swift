@@ -13,7 +13,7 @@ struct ContentView: View {
     @StateObject var viewModel = GameViewModel()
     @State var watching: MapPos?
     
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
 
     var body: some View {
         ZStack {

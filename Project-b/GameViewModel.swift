@@ -27,12 +27,14 @@ class GameViewModel: ObservableObject {
         }
     }
     
-    func collectStructure(at: MapPos) -> Int {
-        if let amount = model.structures[at]?.collectAll(), let type = model.structures[at]?.storage.resourceType {
-            model.addResource(type, amount)
-            return amount
+    func collectAllOfStructure(at pos: MapPos) -> Int {
+        var totalCollected = 0
+        if let structure = model.structures[pos] {
+            for i in 0..<structure.storageSlots.count {
+                totalCollected += model.structures[pos]!.collectAllOf(type: structure.storageSlots[i].resourceType)
+            }
         }
-        return 0
+        return totalCollected
     }
     
     // MARK: Access to model
