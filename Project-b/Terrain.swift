@@ -17,6 +17,7 @@ struct TerrainInfo {
     var imageFile: String
     var overlay: String?
     var resourcePotential: [ResourceType]
+    var allowsStructures: [StructureType] = [.Farm, .StarterVillage]
     
     func generateResource() -> ResourceType? {
         if !resourcePotential.isEmpty {
@@ -30,7 +31,7 @@ struct TerrainInfo {
 }
 
 struct TerrainMap {
-    private(set) var cols = 6
+    private(set) var cols = 7
     private(set) var rows = 8
     private var data: Array<Array<TerrainType>>
     
@@ -42,14 +43,14 @@ struct TerrainMap {
         let m = TerrainType.mountain
         
         data = [
-        [n, n, n, n, n, n],
-          [n, n, n, w, n, n],
-            [n, n, w, g, g, n],
-              [n, w, g, g, g, n],
-                [n, w, g, g, m, n],
-                  [n, n, m, n, n, n],
-                    [n, n, n, n, n, n],
-                      [n, n, n, n, n, n]
+        [n, n, n, n, n, n, n],
+          [n, n, w, w, m, m, n],
+            [n, n, w, g, g, g, n],
+              [n, w, g, g, g, g, n],
+                [n, w, g, g, m, g, n],
+                  [n, g, g, m, w, n, n],
+                    [w, g, g, n, n, n, n],
+                      [w, w, n, n, n, n, n]
         ]
     }
     
@@ -67,10 +68,10 @@ struct TerrainMap {
 }
 
 var Terrains: [TerrainType: TerrainInfo] = [
-    .nothing: TerrainInfo(name: "nothing", imageFile: "nothing", resourcePotential: []),
+    .nothing: TerrainInfo(name: "nothing", imageFile: "nothing", resourcePotential: [], allowsStructures: []),
     .grass: TerrainInfo(name: "Grass", imageFile: "grass", resourcePotential: [.beef, .beef, .hemp, .corn, .corn, .corn, .corn, .corn, .corn, .corn]),
-    .water: TerrainInfo(name: "Water", imageFile: "water", resourcePotential: [.water]),
-    .mountain: TerrainInfo(name: "Mountain", imageFile: "mountain", overlay:"mountainoverlay", resourcePotential: [.goldDust, .thorum, .thorum])
+    .water: TerrainInfo(name: "Water", imageFile: "water", resourcePotential: [.water], allowsStructures: []),
+    .mountain: TerrainInfo(name: "Mountain", imageFile: "mountain", overlay:"mountainoverlay", resourcePotential: [.goldDust, .thorum, .thorum], allowsStructures: [])
 ]
 
 enum TerrainType {

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Deque
+import Combine
 
 struct TapIndicatorsView: View {
     @Binding var tapIndicators: Deque<TapIndicator>
@@ -16,7 +17,7 @@ struct TapIndicatorsView: View {
     var body: some View {
         ZStack {
             ForEach(tapIndicators, id: \.self) { indicator in
-                TapIndicatorView(imageName: indicator.imageFile, quantity: 1, panning: $panning)
+                TapIndicatorView(imageName: indicator.imageFile, quantity: indicator.quantity, panning: $panning)
                     .position(x: indicator.x, y: indicator.y)
             }
         }

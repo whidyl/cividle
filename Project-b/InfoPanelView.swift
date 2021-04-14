@@ -12,7 +12,7 @@ struct InfoPanelView: View {
     @Binding var watching: MapPos?
     
     var body: some View {
-        ZStack {
+        VStack(alignment: .leading) {
             ScrollView () {
                 if watching != nil {
                     if let info = viewModel.structures[watching!] {
@@ -53,6 +53,7 @@ struct InfoPanelView: View {
             }
             .frame(height: 200)
             .background(Color(hue: 0, saturation: 0, brightness: 0, opacity: 0.65))
+            Text("$\(viewModel.money)").multilineTextAlignment(.leading)
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
     }

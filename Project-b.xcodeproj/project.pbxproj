@@ -20,6 +20,9 @@
 		254B32EC26040E9600EBE961 /* HexTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B32EB26040E9600EBE961 /* HexTileView.swift */; };
 		254B32F126040F1F00EBE961 /* ResourcePanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B32F026040F1F00EBE961 /* ResourcePanelView.swift */; };
 		254B32F926040F5000EBE961 /* TapIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B32F826040F5000EBE961 /* TapIndicatorView.swift */; };
+		25545D332620C7DC008CECD1 /* ActionPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25545D322620C7DC008CECD1 /* ActionPanelView.swift */; };
+		25545D372620C86E008CECD1 /* ActionPanelTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25545D362620C86E008CECD1 /* ActionPanelTabsView.swift */; };
+		25545D3B2620CF4A008CECD1 /* ShopPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25545D3A2620CF4A008CECD1 /* ShopPanelView.swift */; };
 		25593B8D25FEB3320098040E /* Terrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25593B8C25FEB3320098040E /* Terrain.swift */; };
 		25723BEC26051DD500869E49 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25723BEB26051DD500869E49 /* Structures.swift */; };
 		2580E88926150D0100761CC3 /* GameContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2580E88826150D0100761CC3 /* GameContent.swift */; };
@@ -80,6 +83,9 @@
 		254B32EB26040E9600EBE961 /* HexTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexTileView.swift; sourceTree = "<group>"; };
 		254B32F026040F1F00EBE961 /* ResourcePanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePanelView.swift; sourceTree = "<group>"; };
 		254B32F826040F5000EBE961 /* TapIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapIndicatorView.swift; sourceTree = "<group>"; };
+		25545D322620C7DC008CECD1 /* ActionPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionPanelView.swift; sourceTree = "<group>"; };
+		25545D362620C86E008CECD1 /* ActionPanelTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionPanelTabsView.swift; sourceTree = "<group>"; };
+		25545D3A2620CF4A008CECD1 /* ShopPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopPanelView.swift; sourceTree = "<group>"; };
 		25593B8C25FEB3320098040E /* Terrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terrain.swift; sourceTree = "<group>"; };
 		25723BEB26051DD500869E49 /* Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		2580E88826150D0100761CC3 /* GameContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameContent.swift; sourceTree = "<group>"; };
@@ -182,7 +188,10 @@
 				254B32EB26040E9600EBE961 /* HexTileView.swift */,
 				25DCC78A260BDEB1006E23EA /* TapIndicatorsView.swift */,
 				254B32F826040F5000EBE961 /* TapIndicatorView.swift */,
+				25545D322620C7DC008CECD1 /* ActionPanelView.swift */,
+				25545D362620C86E008CECD1 /* ActionPanelTabsView.swift */,
 				254B32F026040F1F00EBE961 /* ResourcePanelView.swift */,
+				25545D3A2620CF4A008CECD1 /* ShopPanelView.swift */,
 				25DCC792260BE6E9006E23EA /* InfoPanelView.swift */,
 			);
 			name = V;
@@ -336,11 +345,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				253DEACB25F1803E00070471 /* GameViewModel.swift in Sources */,
+				25545D3B2620CF4A008CECD1 /* ShopPanelView.swift in Sources */,
 				2580E88926150D0100761CC3 /* GameContent.swift in Sources */,
 				253DEA9A25F17C8600070471 /* ContentView.swift in Sources */,
+				25545D332620C7DC008CECD1 /* ActionPanelView.swift in Sources */,
 				254B32EC26040E9600EBE961 /* HexTileView.swift in Sources */,
 				25593B8D25FEB3320098040E /* Terrain.swift in Sources */,
 				25DCC78B260BDEB1006E23EA /* TapIndicatorsView.swift in Sources */,
+				25545D372620C86E008CECD1 /* ActionPanelTabsView.swift in Sources */,
 				254B32F926040F5000EBE961 /* TapIndicatorView.swift in Sources */,
 				2525DA2D2603BFC000F35C0F /* Resources.swift in Sources */,
 				254B32F126040F1F00EBE961 /* ResourcePanelView.swift in Sources */,

@@ -6,12 +6,15 @@
 //
 
 // !use terrain generation techniques to gen a 2d grid of ints, then use it as a template
+// !have a caravan that travels back and forth on a path to collect generated resources.
 
 import Foundation
 import Deque
 
 struct GameModel {
     //TODO: persistant data, load terrain map from json
+    //TODO: storage capacity
+    
     private(set) var terrainMap = TerrainMap()
     private(set) var resourceInventory: [ResourceType: Int] = ResourceType.allCases.reduce(into: [ResourceType: Int]()) { $0[$1] = 0 } //dictionary of all resource types with 0 quantity
     var structures: [MapPos:  AnimatedStructure] = [MapPos(3, 4): Farm(pos: MapPos(3, 4)),
@@ -21,7 +24,8 @@ struct GameModel {
     var indicators = [MapPos: Deque<TapIndicator>]()
     //TODO: Aesthetics/Happiness quantity: effects productivity?
     //TODO: Research points
-    private var money: Int = 10000
+    var purchasableStructures: [AnimatedStructure] = [StarterVillage(pos: MapPos(0, 0)), Farm(pos: MapPos(0, 0))]
+    private(set) var money: Int = 10000
     
     mutating func addResource(_ resourceType: ResourceType, _ quantity: Int) {
         resourceInventory[resourceType]! += quantity
@@ -33,6 +37,13 @@ struct GameModel {
     
     mutating func subtractMoney(_ quantity: Int) {
         money -= quantity
+    }
+    
+    mutating func sellResources() {
+        for (type, quantity) in resourceInventory {
+            money += Resources[type]!.value*quantity
+            resourceInventory = ResourceType.allCases.reduce(into: [ResourceType: Int]()) { $0[$1] = 0 }
+        }
     }
 }
 

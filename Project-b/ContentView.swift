@@ -12,19 +12,21 @@ import Deque
 struct ContentView: View {
     @StateObject var viewModel = GameViewModel()
     @State var watching: MapPos?
-    
-    let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
+    @State var ticker = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State var triggerUpdate = false
+    @State var shopSelection: ShopSelection?
 
     var body: some View {
         ZStack {
-            GameContent(watching: $watching)
-            ResourcePanelView()
+            GameContent(watching: $watching, triggerUpdate: $triggerUpdate, shopSelection: $shopSelection)
+            ActionPanelView(shopSelection: $shopSelection)
             InfoPanelView(watching: $watching) 
         }
         .environmentObject(viewModel)
         .ignoresSafeArea()
-        .onReceive(timer, perform: { _ in
+        .onReceive(ticker, perform: { _ in
             viewModel.tick()
+            triggerUpdate.toggle()
         })
     }
     

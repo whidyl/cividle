@@ -31,10 +31,13 @@ struct ResourcePanelView: View {
                 }
                 .padding(Edge.Set.top, 15)
             }
-            .frame(height: 200)
+            .frame(height: 213)
             .background(Color(hue: 0, saturation: 0, brightness: 0, opacity: 0.65))
+            Button("Sell Goods") {
+                viewModel.sellGoods()
+            }.padding(.top, 70).padding(.leading, 200)
         }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .bottom)
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 200, alignment: .bottom)
         
     }
 }

@@ -22,8 +22,8 @@ class GameViewModel: ObservableObject {
     }
     
     func tick() {
-        for pos in structures.keys {
-            structures[pos]?.onTick(model: &model) 
+        for kv in structures.sorted(by: {$0.value.tickPriority > $1.value.tickPriority}) {
+            structures[kv.0]?.onTick(model: &model)
         }
     }
     
@@ -37,10 +37,45 @@ class GameViewModel: ObservableObject {
         return totalCollected
     }
     
+    func getStructureIndicators(pos: MapPos) -> [(ResourceType, Int)] {
+        if let indicators = structures[pos]?.indicators {
+            model.structures[pos]?.indicators = []
+            return indicators
+        }
+        return []
+    }
+    
+    func purchaseStructure(type: StructureType, pos: MapPos) {
+        //TODO: money validation
+        //TODO: visual indication of invalid purchase location
+        if model.terrainMap.terrainInfoAt(pos).allowsStructures.contains(type) && model.structures[pos] == nil{
+            switch type {
+            case .StarterVillage:
+                    model.structures[pos] = StarterVillage(pos: pos)
+            case .Farm:
+                    model.structures[pos] = Farm(pos: pos)
+            }
+            model.structures[pos]?.onPlace(model: &model)
+        }
+    }
+    
+    func sellStructure(pos: MapPos) {
+        model.structures[pos]?.onRemove(model: &model)
+        model.structures[pos] = nil
+    }
+    
+    func sellGoods() {
+        model.sellResources()
+    }
+    
     // MARK: Access to model
     
     func structureAt(_ at: MapPos) -> AnimatedStructure? {
         return structures[at]
+    }
+    
+    var purchasableStructures: [AnimatedStructure] {
+        return model.purchasableStructures
     }
     
     var terrainMap: TerrainMap {
@@ -53,6 +88,10 @@ class GameViewModel: ObservableObject {
     
     var structures: [MapPos: AnimatedStructure] { 
         return model.structures
+    }
+    
+    var money: Int {
+        return model.money
     }
     
 }
