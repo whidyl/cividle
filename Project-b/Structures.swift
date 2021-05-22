@@ -9,8 +9,8 @@ import Foundation
 
 //MARK: Structures
 
-//TODO: structures can consume from adjacent structures
-//TODO: camp structure
+//X: structures can consume from adjacent structures
+//X: camp structure
 //TODO: adjacency bonuses
 //TODO: serializer
 

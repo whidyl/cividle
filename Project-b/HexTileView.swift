@@ -22,14 +22,11 @@ struct HexTileView: View {
     @Binding var shopSelection: ShopSelection?
     
     var body: some View {
+        let terrainInfo = viewModel.terrainMap.terrainInfoAt(mapPos)
         GeometryReader { geometry in
             let midX =  geometry.frame(in: .global).midX
             let midY = geometry.frame(in: .global).midY
-            
-
             ZStack {
-                let terrainInfo = viewModel.terrainMap.terrainInfoAt(mapPos)
-                
                 if viewModel.terrainMap.typeAt(mapPos) != .nothing {
                     if let overlay = terrainInfo.overlay {
                         Image(terrainInfo.imageFile)
@@ -82,8 +79,8 @@ struct HexTileView: View {
                     }
                 }
             })
-            
-        }
+        }.id(mapPos)
             
     }
+    
 }

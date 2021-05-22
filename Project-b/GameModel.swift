@@ -22,7 +22,7 @@ struct GameModel {
                                                     MapPos(3, 3): StarterVillage(pos: MapPos(3, 3)),
                                                     MapPos(1, 3): Farm(pos: MapPos(1, 3))]
     var indicators = [MapPos: Deque<TapIndicator>]()
-    //TODO: Aesthetics/Happiness quantity: effects productivity?
+    //!Aesthetics/Happiness; quantity effects productivity?
     //TODO: Research points
     var purchasableStructures: [AnimatedStructure] = [StarterVillage(pos: MapPos(0, 0)), Farm(pos: MapPos(0, 0))]
     private(set) var money: Int = 10000
